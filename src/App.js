@@ -8,12 +8,20 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      thread: true
+      thread: false
     };
+    this.click = this.click.bind(this);
   }
 
   componentDidMount(){
 
+  }
+  click(event){
+    if(event.target.className === "threads"){
+      this.setState({
+        thread: event.target.attributes['threadname'].value
+      })
+    }
   }
 
 
@@ -23,10 +31,10 @@ class App extends Component {
       display = <ThreadList />
     }
     else{
-      display = <Thread thread={0} />
+      display = <Thread thread={this.state.thread} />
     }
     return (
-      <div className="App">
+      <div className="App" onClick={this.click}>
         <InputForm thread={this.state.thread}/>
         {display}
       </div>

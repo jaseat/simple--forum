@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../MyFirebase';
 
-
+var ev;
 
 class InputForm extends Component {
     constructor(props){
@@ -9,18 +9,33 @@ class InputForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.database = firebase.database().ref();
     }
+    
     handleSubmit(event){
         event.preventDefault();
+        ev = event;
         if(!this.props.thread){
             this.database.child("threadlist").push({
                 threadname: event.target[0].value,
             })
+            this.database.child("threads").push({
+                threadname: event.target[0].value,
+            })
         }
+        
         else{
-             this.database.child("comment").push({
-                 name: event.target[0].value,
-                 comment: event.target[1].value,
-                 time: firebase.database.ServerValue.TIMESTAMP
+             this.database.child("threads").orderByChild('threadname').equalTo(this.props.thread).once("value", function(snapshot) {
+                 snapshot.forEach(function(user){
+                     user.ref.child('comment').push({
+                         
+                        //  name: "test",
+                        //  comment: "comment",
+                        //  time: firebase.database.ServerValue.TIMESTAMP
+                         name: ev.target[0].value,
+                         comment: ev.target[1].value,
+                         time: firebase.database.ServerValue.TIMESTAMP
+                    })
+                 })
+                 
              })
         }
         event.target[1].value = '';

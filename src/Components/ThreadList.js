@@ -9,11 +9,12 @@ class ThreadList extends Component {
         this.Threads = [];
     }
     componentDidMount(){
-        const commentRef = firebase.database().ref().child('thread-list');
+        const commentRef = firebase.database().ref().child('threadlist');
         var count = 0;
+
         commentRef.on('child_added', snap =>{
             if(snap.exists()){
-                this.Comments.push(<Comment author={snap.val().name} text={snap.val().comment} date={snap.val().time} key={count++} />);
+                this.Threads.push(<li className="threads" threadname={snap.val().threadname}>{snap.val().threadname}</li>);
                 this.forceUpdate();
             }
         }, err =>{
@@ -22,7 +23,9 @@ class ThreadList extends Component {
     }
   render() {
     return (
-        <h1>Well</h1>
+        <ul>
+            {this.Threads}
+        </ul>
     );
   }
 }

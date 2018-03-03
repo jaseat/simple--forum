@@ -8,14 +8,16 @@ class Thread extends Component {
         super(props);
         this.Comments = [];
     }
+    whatever(child, count){
+        this.Comments.push(<Comment author={child.val().name} text={child.val().comment} date={child.val().time} key={count++} />);
+    }
     componentDidMount(){
-        const commentRef = firebase.database().ref().child('comment');
+        console.log(this.props.thread);
+        const commentRef = firebase.database().ref().child('threads').orderByChild('threadname').equalTo(this.props.thread);
         var count = 0;
         commentRef.on('child_added', snap =>{
-            if(snap.exists()){
-                this.Comments.push(<Comment author={snap.val().name} text={snap.val().comment} date={snap.val().time} key={count++} />);
+            snap.child('comment').forEach(this.whatever.bind(this))
                 this.forceUpdate();
-            }
         }, err =>{
         })
         

@@ -1,0 +1,55 @@
+.Comment{
+  display: table;
+}
+
+.Comment-text{
+  margin: 5px;
+  max-width: 95vw;
+  word-wrap: break-word;
+}
+
+.Comment-container{
+  background-color: #ffa2a2;
+  display: table;
+  padding: 10x;
+  border: 1px solid rgb(255, 0, 0);
+  margin-bottom: 10px;
+}
+
+.UserInfo-name{
+  margin-bottom: 5px;
+}
+
+.Thread{
+  padding: 10px;
+}
+
+.InputForm{
+  padding: 10px;
+}
+
+form{
+  width: 400px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-gap: 2px;
+}
+
+label{
+  grid-column: 1 / 2;
+  background-color: #ffa2a2;
+}
+
+input {
+  grid-column: 2 / 3;
+}
+
+button{
+  grid-column: 1 / 2;
+  background-color: #ffa2a2;
+}
+
+textarea{
+  resize: vertical;
+  height: 100px;
+}

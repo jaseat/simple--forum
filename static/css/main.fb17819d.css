@@ -1,0 +1,2 @@
+body{margin:0;padding:0;font-family:sans-serif}.Comment{display:table}.Comment-text{margin:5px;max-width:95vw;word-wrap:break-word}.Comment-container{background-color:#ffa2a2;display:table;padding:10x;border:1px solid red;margin-bottom:10px}.UserInfo-name{margin-bottom:5px}.InputForm,.Thread{padding:10px}form{width:400px;display:grid;grid-template-columns:100px 1fr;grid-gap:2px}label{grid-column:1/2;background-color:#ffa2a2}input{grid-column:2/3}button{grid-column:1/2;background-color:#ffa2a2}textarea{resize:vertical;height:100px}
+/*# sourceMappingURL=main.fb17819d.css.map*/
